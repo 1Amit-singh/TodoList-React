@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import "./App.css";
+import Todo from './Components/Todo';
 
-function App() {
+const App = () => {
+  const items = [
+    {
+      text: "Text1",
+      id: 1
+    },
+    {
+      text: "Text2",
+      id: 2
+    },
+    {
+      text: "Text3",
+      id: 3
+    },
+  ];
+
+  const [todo, setTodo] = useState(items);
+  const [inputVal, setInputVal] = useState("");
+
+
+  const handleChange = (event) => {
+    setInputVal(event.target.value)
+  }
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    if (inputVal === "") return;
+    const newTodo = {text: inputVal, id: 3};
+    setTodo([...todo, newTodo]);
+    setInputVal("")
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <form>
+        <div>
+        <input className='input' placeholder='Enter' value={inputVal} onChange={handleChange} />
+        <button className='btn' onClick={handleClick}>Submit</button>
+        </div>
+        <Todo todo={todo} setTodo={setTodo} />
+        
+      </form>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
