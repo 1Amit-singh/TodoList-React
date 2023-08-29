@@ -18,8 +18,9 @@ const App = () => {
     },
   ];
 
-  const [todo, setTodo] = useState(items);
+  const [todos, setTodos] = useState(items);
   const [inputVal, setInputVal] = useState("");
+  // const [idCounter, setIdCounter] = useState(4);
 
 
   const handleChange = (event) => {
@@ -29,9 +30,16 @@ const App = () => {
   const handleClick = (event) => {
     event.preventDefault();
     if (inputVal === "") return;
-    const newTodo = {text: inputVal, id: 3};
-    setTodo([...todo, newTodo]);
+    const newId = todos.length + 1;
+    const newTodo = {text: inputVal, id: newId};
+    // setIdCounter(idCounter+1);s
+    setTodos([...todos, newTodo]);
     setInputVal("")
+  }
+
+  const deleteItem = (key) => {
+    const newTodo = todos.filter(todo => todo.id ==! key)
+    setTodos(newTodo);
   }
 
   return (
@@ -41,7 +49,9 @@ const App = () => {
         <input className='input' placeholder='Enter' value={inputVal} onChange={handleChange} />
         <button className='btn' onClick={handleClick}>Submit</button>
         </div>
-        <Todo todo={todo} setTodo={setTodo} />
+        {todos.map((todos, index) => (
+          <Todo todos={todos} index={index} deleteItem={deleteItem} key={todos.id} />
+        ))}
         
       </form>
     </div>
