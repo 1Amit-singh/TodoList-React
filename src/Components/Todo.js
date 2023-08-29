@@ -1,15 +1,14 @@
 import React from 'react'
 import "../App.css";
 
-const Todo = ({todos, index, deleteItem, id}) => {
+const Todo = ({todos, index, deleteItem }) => {
+
   return (
-    <div>
           <div className='listItems'>
             <div className='item'>
-              <div><span>{todos.id}. </span>{todos.text}</div><span>X</span>
+              <div><span>{index + 1}. </span>{todos.text}</div><span onClick={() => deleteItem(todos.id)}>X</span>
             </div>
           </div>
-        </div>
   )
 }
 

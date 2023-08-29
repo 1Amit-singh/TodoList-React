@@ -5,15 +5,15 @@ import Todo from './Components/Todo';
 const App = () => {
   const items = [
     {
-      text: "Text1",
+      text: "Task1",
       id: 1
     },
     {
-      text: "Text2",
+      text: "Task2",
       id: 2
     },
     {
-      text: "Text3",
+      text: "Task3",
       id: 3
     },
   ];
@@ -38,7 +38,10 @@ const App = () => {
   }
 
   const deleteItem = (key) => {
-    const newTodo = todos.filter(todo => todo.id ==! key)
+    console.log(key);
+    const newTodo = todos.filter(todo => {
+      console.log(key, todo.id)
+      return (key ==! todo.id)})
     setTodos(newTodo);
   }
 
