@@ -1,5 +1,11 @@
+:root{
+  --bg-color: #000000;
+  --fg-color: #F2F4F3;
+  --border-color: #F2F4F3;
+}
+
 body{
-  background-color: #301919;
+  background-color: var(--bg-color);
 }
 .container{
   margin-top: 100px;
@@ -8,36 +14,50 @@ body{
   align-items: center;
 }
 .input{
-  color: #fff;
+  color: var(--fg-color);
   outline: none;
-  background-color: #301919;
+  border: 2px solid var(--border-color);
+  background-color: var(--bg-color);
   font-size: 20px;
   padding: 10px;
-  width: 300px;
+  width: 250px;
   margin-bottom: 40px;
+  border-radius: 10px;
 }
 .btn{
   font-size: 20px;
   padding: 10px;
   border-radius: 10px;
-  background-color: #4d2d2d;
-  color: #fff;
+  background-color: var(--bg-color);
+  color: var(--fg-color);
   margin-left: 10px;
+  border: 2px solid var(--border-color);
+
 }
 .listItems{
   margin-top: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #fff;
+  color: var(--fg-color);
   font-size: 20px;
 }
 .item{
-  border: 1px solid #fff;
+  border-radius: 10px;
+  border: 2px solid var(--border-color);
   margin-bottom: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  width: 100%;
+  width: 80%;
+}
+.deleteBtn{
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 5px;
+}
+.deleteBtn:hover{
+  background-color: #ffffff51;
+  padding: 2px 4px;
 }

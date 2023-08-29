@@ -38,10 +38,10 @@ const App = () => {
   }
 
   const deleteItem = (key) => {
-    console.log(key);
+    // console.log(key);
     const newTodo = todos.filter(todo => {
-      console.log(key, todo.id)
-      return (key ==! todo.id)})
+      return (key !== todo.id)})
+
     setTodos(newTodo);
   }
 
@@ -53,7 +53,7 @@ const App = () => {
         <button className='btn' onClick={handleClick}>Submit</button>
         </div>
         {todos.map((todos, index) => (
-          <Todo todos={todos} index={index} deleteItem={deleteItem} key={todos.id} />
+          <Todo todos={todos} index={index} deleteItem={deleteItem} key={index} />
         ))}
         
       </form>
