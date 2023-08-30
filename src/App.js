@@ -1,8 +1,24 @@
 import React, { useState } from 'react'
 import "./App.css";
 import Todo from './Components/Todo';
+import ToggleSwitch from './ToggleSwitch';
 
 const App = () => {
+  const r = document.querySelector(":root");
+
+  function changeTheme(){
+    const rs = getComputedStyle(r);
+    if(rs.getPropertyValue("--bg-color") === "#121212"){
+      r.style.setProperty("--bg-color", "#F0ECE5");
+      r.style.setProperty("--fg-color", "#252627");
+      r.style.setProperty("--border-color", "#252627");
+    }
+    else{
+      r.style.setProperty("--bg-color", "#121212");
+      r.style.setProperty("--fg-color", "#f4f2f2");
+      r.style.setProperty("--border-color", "#c45834");
+    }
+  }
   const items = [
     {
       text: "Task1",
@@ -55,8 +71,8 @@ const App = () => {
         {todos.map((todos, index) => (
           <Todo todos={todos} index={index} deleteItem={deleteItem} key={index} />
         ))}
-        
       </form>
+      <ToggleSwitch changeTheme={changeTheme} />
     </div>
   )
 }

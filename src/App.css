@@ -1,11 +1,15 @@
 :root{
-  --bg-color: #000000;
-  --fg-color: #F2F4F3;
-  --border-color: #F2F4F3;
+  --bg-color: #121212;
+  --fg-color: #f4f2f2;
+  --border-color: #c45834;
 }
 
 body{
   background-color: var(--bg-color);
+  position: relative;
+}
+h4{
+  color: var(--fg-color);
 }
 .container{
   margin-top: 100px;
@@ -32,7 +36,11 @@ body{
   color: var(--fg-color);
   margin-left: 10px;
   border: 2px solid var(--border-color);
-
+  transition: background-color .3s ease;
+  cursor: pointer;
+}
+.btn:hover{
+  background-color: rgba(115, 115, 115, 0.693);
 }
 .listItems{
   margin-top: 0px;
@@ -60,4 +68,9 @@ body{
 .deleteBtn:hover{
   background-color: #ffffff51;
   padding: 2px 4px;
+}
+.app{
+  position: absolute;
+  top: -100px;
+  right: 5%;
 }
