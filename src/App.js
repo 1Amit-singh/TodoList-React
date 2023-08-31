@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./App.css";
 import Todo from './Components/Todo';
 import ToggleSwitch from './ToggleSwitch';
+import axios from 'axios';
+
 
 const App = () => {
+ 
   const r = document.querySelector(":root");
 
   function changeTheme(){
@@ -19,31 +22,29 @@ const App = () => {
       r.style.setProperty("--border-color", "#c45834");
     }
   }
-  const items = [
-    {
-      text: "Task1",
-      id: 1
-    },
-    {
-      text: "Task2",
-      id: 2
-    },
-    {
-      text: "Task3",
-      id: 3
-    },
-  ];
 
-  const [todos, setTodos] = useState(items);
+
+  const [todos, setTodos] = useState([]);
   const [inputVal, setInputVal] = useState("");
   // const [idCounter, setIdCounter] = useState(4);
 
+  const url = "https://api.jsonbin.io/v3/b/";
+  const key = "64f0416c8d92e126ae652a2c";
+
+  const fetchTodos = async () => {
+    const res = await axios.get(url + key);
+    await setTodos(res.data.record.items);
+  }
+
+  useEffect(() => {
+    fetchTodos();
+  }, [])
 
   const handleChange = (event) => {
     setInputVal(event.target.value)
   }
 
-  const handleClick = (event) => {
+  const handleClick = async (event) => {
     event.preventDefault();
     if (inputVal === "") return;
     const newId = todos.length + 1;
